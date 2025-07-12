@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | FEU Tech Campus Navigation</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bx bxl-sketch icon"></i>
+      <div class="logo_name">FEU Tech</div>
+      <i class="bx bx-menu-alt-right" id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li><a href="dashboard.html" class="active"><i class="bx bx-grid-alt"></i><span class="links_name">Dashboard</span></a></li>
+      <li><a href="guidemap.html"><i class="bx bx-map-alt"></i><span class="links_name">Guide Map</span></a></li>
+      <li><a href="account.html"><i class="bx bx-user"></i><span class="links_name">Account</span></a></li>
+      <li><a href="feedback.html"><i class="bx bx-chat"></i><span class="links_name">Feedback</span></a></li>
+      <li><a href="about.html"><i class="bx bx-info-circle"></i><span class="links_name">About Us</span></a></li>
+      <li><a href="help.html"><i class="bx bx-help-circle"></i><span class="links_name">Help</span></a></li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.jpg" alt="profileImg" />
+          <div class="name_job">
+            <div class="name">Jane Doe</div>
+            <div class="job">Student</div>
+          </div>
+        </div>
+        <i class="bx bx-log-out" id="log_out"></i>
+      </li>
+    </ul>
+  </div>
+
+  <section class="home-section">
+    <header class="main-header">
+      <div class="header-content">
+        <div class="title-and-logo">
+          <img src="images/logo.png" alt="FEU Tech Logo" class="header-logo" />
+          <h2 class="page-title">Dashboard</h2>
+        </div>
+        <div class="user-profile">
+          <a href="#" class="profile-link">
+            <img src="images/profile.jpg" alt="User Avatar" class="user-avatar" />
+            <span class="user-name">Jane Doe</span>
+            <i class="bx bxs-chevron-down dropdown-icon"></i>
+          </a>
+          <div class="dropdown-menu">
+            <div class="user-info">
+              <span class="user-initials">JD</span>
+              <div class="user-details">
+                <div class="user-name-dropdown">Jane Doe</div>
+                <div class="user-email-dropdown">jane.doe@example.com</div>
+              </div>
+            </div>
+            <ul>
+              <li><a href="account.html"><i class="bx bx-user"></i>My Profile</a></li>
+              <li><a href="settings.html"><i class="bx bx-cog"></i>Settings</a></li>
+              <li><a href="notifications.html"><i class="bx bx-bell"></i>Notifications <span class="badge">3</span></a></li>
+              <li><a href="login.html" class="logout"><i class="bx bx-log-out"></i>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+      <div class="welcome-box">
+        <h3>Welcome, Jane Doe!</h3>
+        <p>Explore FEU Tech campus with ease. Your journey starts here.</p>
+      </div>
+
+      <div class="card-container">
+        <div class="card">
+          <i class="bx bx-map-alt icon"></i>
+          <h4>Interactive Map</h4>
+          <p>Find your way around buildings and rooms.</p>
+        </div>
+        <div class="card">
+          <i class="bx bx-calendar-event icon"></i>
+          <h4>Upcoming Events</h4>
+          <p>Stay updated on campus activities.</p>
+        </div>
+        <div class="card">
+          <i class="bx bx-building icon"></i>
+          <h4>Building Information</h4>
+          <p>Learn more about campus facilities.</p>
+        </div>
+      </div>
+
+      <div class="recent-activity">
+        <h3>Recent Activity</h3>
+        <ul>
+          <li><span>Navigated to C101</span><span>Today, 10:30 AM</span></li>
+          <li><span>Viewed Campus Map</span><span>Yesterday, 2:15 PM</span></li>
+          <li><span>Checked profile settings</span><span>3 days ago, 9:00 AM</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const userName = "Jane Doe";
+      const userEmail = "jane.doe@example.com";
+      const userRole = "Student";
+
+      const sidebarName = document.querySelector('.sidebar .profile .name');
+      const sidebarJob = document.querySelector('.sidebar .profile .job');
+      if (sidebarName) sidebarName.textContent = userName;
+      if (sidebarJob) sidebarJob.textContent = userRole;
+
+      const headerUserName = document.querySelector('.user-profile .user-name');
+      const dropdownUserName = document.querySelector('.user-name-dropdown');
+      const dropdownUserEmail = document.querySelector('.user-email-dropdown');
+      const dropdownUserInitials = document.querySelector('.user-initials');
+
+      if (headerUserName) headerUserName.textContent = userName;
+      if (dropdownUserName) dropdownUserName.textContent = userName;
+      if (dropdownUserEmail) dropdownUserEmail.textContent = userEmail;
+      if (dropdownUserInitials) dropdownUserInitials.textContent = getInitials(userName);
+
+      const logoutBtnSidebar = document.getElementById('log_out');
+      const logoutBtnDropdown = document.querySelector('.logout');
+
+      const performLogout = (e) => {
+        e.preventDefault();
+        alert('Logging out...');
+        window.location.href = 'login.html';
+      };
+
+      if (logoutBtnSidebar) logoutBtnSidebar.addEventListener('click', performLogout);
+      if (logoutBtnDropdown) logoutBtnDropdown.addEventListener('click', performLogout);
+    });
+
+    function getInitials(name) {
+      return name
+        .split(' ')
+        .map(n => n[0])
+        .join('')
+        .toUpperCase();
+    }
+  </script>
+</body>
+</html>
